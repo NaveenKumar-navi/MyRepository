@@ -1,0 +1,49 @@
+type Product {
+  id: ID!
+  productName : String
+  productDescription : String
+  }
+
+type Store {
+  id :ID!
+  storeName : String
+  storeDescription : String 
+  capital: Product
+}
+type ProductType{
+  id :ID!
+  productType : String
+}
+
+input ProductInput {
+  id: ID!
+  productName : String
+  productDescription : String
+}
+
+type Query {
+  product(id: ID): Product
+  allProducts: [Product]
+  productsByName(productName: String): [Product]
+  
+  store(id: ID): Store
+  allStores: [Store]
+  storesByName(storeName: String): [Store]
+  
+  
+  allProductTypes: [ProductType]
+ 
+}
+
+type Mutation {
+  addProduct(productName: String, productDescription: String): Product
+  deleteProduct(id: ID): String
+  addType(productType: String): ProductType
+  
+  addStore(storeName: String, storeDescription: String): Store
+  addStoreWithCapital(storeName: String, storeDescription: String, capital: ProductInput): 
+
+Store
+  deleteStore(id: ID): String
+  setCapital(storeId: ID, productId: ID): Store
+}
